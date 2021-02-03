@@ -26,6 +26,7 @@ public class UserDaoImpl implements UserDao {
         );
     }
 
+    @Override
     public User findByCode(String code) {
 
         String sql = "select * from user where code = ?";
@@ -33,11 +34,15 @@ public class UserDaoImpl implements UserDao {
         return user;
     }
 
+    @Override
     public void updateStatus(User user) {
-
+        String sql = "update user set status = 'Y' where uid = ?";
+        template.update(sql, user.getUid());
     }
 
-    public User findByUsernameAndPassword(String username, String password) {
-        return null;
+    @Override
+    public User findByUsernameAndPassword(String userName, String password) {
+        String sql = "select * from user where userName = ? and password = ?";
+        return template.queryForObject(sql, new BeanPropertyRowMapper<User>(User.class), userName, password);
     }
 }

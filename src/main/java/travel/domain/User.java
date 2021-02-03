@@ -12,6 +12,9 @@ public class User  {
     private String status;//激活状态，Y代表激活，N代表未激活
     private String code;//激活码（要求唯一）
 
+    public User() {
+    }
+
     public User(int uid, String username, String password, String name, String birthday, String sex, String telephone, String email, String status, String code) {
         this.uid = uid;
         this.userName = username;
